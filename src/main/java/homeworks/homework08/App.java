@@ -5,6 +5,8 @@ package main.java.homeworks.homework08;
 // Продукты в цикле выбираются покупателями по очереди и, пока не введено слово END, наполняется пакет.
 // Результат работы программы выводится в файл.
 
+import main.java.homeworks.homework08.util.ProcessingDataInput;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.*;
@@ -26,7 +28,8 @@ public class App {
                     for (String parts : line.split(";")) {
                         String[] partsMassive = parts.split("=");
                         String namePerson = partsMassive[0].trim();
-                        Integer cashPerson = Integer.parseInt(partsMassive[1].trim());
+                        // Изменено преобразование полученной строки на ProcessingDataInput.parseCount()
+                        Integer cashPerson = ProcessingDataInput.parseCount(partsMassive[1].trim());
                         persons.add(new Person(namePerson, cashPerson));
                     }
                     count++;
@@ -36,7 +39,8 @@ public class App {
                     for (String parts : line.split(";")) {
                         String[] partsMassive = parts.split("=");
                         String nameProduct = partsMassive[0].trim();
-                        Integer priceProduct = Integer.parseInt(partsMassive[1].trim());
+                        // Изменено преобразование полученной строки на ProcessingDataInput.parseCount()
+                        Integer priceProduct = ProcessingDataInput.parseCount(partsMassive[1].trim());
                         products.add(new Product(nameProduct, priceProduct));
                     }
                     count++;

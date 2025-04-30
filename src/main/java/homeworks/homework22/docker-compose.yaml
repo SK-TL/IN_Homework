@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=library_db
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      depends_on:
+        - postgres
+      ports:
+        - "8080:8080"
+      command:
+        - java -jar app.jar

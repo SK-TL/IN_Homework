@@ -24,7 +24,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = PizzaServiceImpl.class)
-@ExtendWith(SpringExtension.class)
 public class PizzaServiceImplTest {
 
     @MockitoBean

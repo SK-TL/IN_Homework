@@ -30,7 +30,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = OrderServiceImpl.class)
-@ExtendWith(SpringExtension.class)
 public class OrderServiceImplTest {
 
     @MockitoBean

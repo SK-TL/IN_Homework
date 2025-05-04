@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "12345"
+      POSTGRES_DB: library_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/library_db"
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: "12345"
+    volumes:
+      - .m2:/root/.m2
+    command: java -jar /app.jar
+    restart: on-failure
+
+volumes:
+  postgres_data:
+  .m2:
